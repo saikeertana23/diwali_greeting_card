@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diwali Greeting Card</title>
+    <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url(/diwali/firework.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
+        .diwaliCard {
+            position: relative;
+            width: 500px; 
+            height: 600px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transform: perspective(2500px);
+            transition: 1s;
+        }
+        .diwaliCard:hover {
+            transform: perspective(2500px) rotate(5deg);
+            box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2), 0 10px 100px rgba(0, 0, 0, 0.5);
+        }
+        .diwaliCard:hover .cardFront {
+            transform: rotateY(-160deg);
+        }
+        .cardFront {
+            position: relative;
+            background-image: url(/diwali/diwalibg.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 500px;
+            height: 600px;
+            overflow: hidden;
+            transform-origin: left;
+            box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2), 30px 0 50px rgba(0, 0, 0, 0.4);
+        }
+        .diwaliCard .cardInside, .diwaliCard .cardBack {
+            position: absolute;
+            width: 500px;
+            height: 600px;
+            box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
+            backface-visibility: hidden;
+        }
+        .diwaliCard .cardBack {
+            left: -500px; 
+            bottom:0px;
+            transform-origin: right;
+            transform-style: preserve-3d;
+            background-image: url(/diwali/cardbackbg3.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2), 30px 0 50px rgba(0, 0, 0, 0.4);
+            visibility: hidden;
+        }
+        .diwaliCard:hover .cardFront{
+            visibility: hidden;
+        }
+        .diwaliCard:hover .cardBack{
+            visibility: visible; 
+        }
+        .cardBack .wishes {
+            font-family: "Lucida Handwriting", cursive;
+            font-size: 28px;
+            margin-top: 100px;
+            margin-left: 70px;
+            margin-right: 50px;
+            color: black;
+        }
+        .cardInside {
+            position: absolute;
+            background-image: url(/diwali/cardinsidebg7.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 500px;
+            height: 600px;
+            z-index: -1;
+            left: 0;
+            top: 0;
+            box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
+            backface-visibility: hidden; 
+        }
+        .cardFront .diya1 {
+            width: 130px;
+            height: 140px;
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            z-index: 1;
+            background-image: url(/diwali/finaldiya1.png);
+            background-size: 100% 100%;
+            margin-bottom: 180px;
+            margin-left: 15px;
+        }
+        .diwaliCard:hover .diya1{
+            visibility: hidden;
+        }
+        .diya1::after{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 30px;
+            background-color: black;
+            bottom: 110px;
+            left: 65px;
+        }
+        .cardFront .diya2 {
+            width: 130px;
+            height: 140px;
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            z-index: 1;
+            background-image: url(/diwali/finaldiya2.png);
+            background-size: 100% 100%;
+            margin-bottom: 330px;
+            margin-left: 380px;
+        }
+        .diwaliCard:hover .diya2{
+            visibility: hidden;
+        }
+        .diya2::after{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 150px;
+            background-color: black;
+            bottom: 110px;
+            left: 65px;
+          
+        }
+        .cardFront .diya3 {
+            width: 130px;
+            height: 140px;
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            z-index: 1;
+            background-image: url(/diwali/finallantern.jpg.png);
+            background-size: 100% 100%;
+            margin-bottom: 70px;
+            margin-left: 90px;
+        }
+        .diwaliCard:hover .diya3{
+            visibility: hidden;
+        }
+        .diya3::after{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 130px;
+            background-color: black;
+            bottom: 110px;
+            left: 65px;
+        }
+        .cardFront .diya4 {
+            width: 130px;
+            height: 140px;
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            z-index: 1;
+            background-image: url(/diwali/finallantern.jpg.png);
+            background-size: 100% 100%;
+            margin-bottom: 200px;
+            margin-left: 320px;
+        }
+        .diwaliCard:hover .diya4{
+            visibility: hidden;
+        }
+        .diya4::after{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 350px;
+            background-color: black;
+            bottom: 110px;
+            left: 65px;
+        }
+        .cardInside .diya5 {
+            width: 100px;
+            height: 120px;
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            z-index: 1;
+            background-image: url(/diwali/finallantern.jpg.png);
+            background-size: 100% 100%;
+            margin-bottom: 470px;
+            margin-left: 5px;
+        }
+        .diya5::after{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 50px;
+            background-color: black;
+            bottom: 80px;
+            left: 50px;
+        }
+        .cardInside .diya6 {
+            width: 100px;
+            height: 120px;
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            z-index: 1;
+            background-image: url(/diwali/finallantern.jpg.png);
+            background-size: 100% 100%;
+            margin-bottom: 470px;
+            margin-left: 400px;
+        }
+        .diya6::after{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 50px;
+            background-color: black;
+            bottom: 80px;
+            left: 50px;
+        }
+        .cardInside .diya7 {
+            width: 100px;
+            height: 120px;
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            z-index: 1;
+            background-image: url(/diwali/finallantern.jpg.png);
+            background-size: 100% 100%;
+            margin-bottom: 350px;
+            margin-left: 80px;
+        }
+        .diya7::after{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 50px;
+            background-color: black;
+            bottom: 80px;
+            left: 50px;
+        }.cardInside .diya8 {
+            width: 100px;
+            height: 120px;
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            z-index: 1;
+            background-image: url(/diwali/finallantern.jpg.png);
+            background-size: 100% 100%;
+            margin-bottom: 350px;
+            margin-left: 300px;
+        }
+        .diya8::after{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 50px;
+            background-color: black;
+            bottom: 80px;
+            left: 50px;
+        }
+         .text1{
+            margin-top: 150px; 
+            margin-left: 70px;
+            font-size: 50px;
+            font-family: "Lucida Handwriting", cursive;
+        }
+        .text2{
+            margin-left: 60px;
+            margin-top: 0;
+            font-size: 70px;
+            font-family: "Lucida Handwriting", cursive;
+        }
+        .giftbox{
+            width: 200px;
+            height: 180px;
+            position: absolute; 
+            background-image: url(/diwali/giftbox2.jpg.png);
+            background-size: cover;
+            margin-left: 30px;
+            margin-bottom: 50px; 
+        }
+        .rocket{
+            width: 170px;
+            height: 170px;
+            position: absolute; 
+            background-image: url(/diwali/rocket2.png);
+            background-size: cover;
+            background-size: 100% 100%;
+            margin-left: 270px;
+        }
+        .lights{
+            background-color: #fff;
+            height: 70px;
+            width: 280px;
+            margin-left: 110px ;
+            margin-bottom: 100px;
+            font-family: "Lucida Handwriting", cursive;
+            padding-top: 25px;
+            padding-left: 25px;
+            font-size: 20px;
+            animation: moveLights 1s infinite alternate;
+            margin-top: 50px; 
+        }
+       
+@keyframes moveLeftToRight {
+        0% {
+            transform: translateX(-20%);
+        }
+        20% {
+            transform: translateX(20%);
+        }
+        30% {
+            transform: translateX(-20%);
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="diwaliCard">
+        <div class="cardFront">
+            <p class="text1">HAPPY</p>
+            <p class="text2">DIWALI</p>
+            <div class="diya1"></div>
+            <div class="diya2"></div>
+            <div class="diya3"></div>
+            <div class="diya4"></div>  
+        </div>
+        <div class="cardBack">
+                <p class="wishes">May the beauty of Deepavali Season Fill Your Home With Happiness, And May The Coming Year Provide You With All That Bring You Joy! HAPPY DIWALI.....</p>
+                <div class="giftbox"></div>
+                <div class="rocket"></div>
+        </div>
+         <div class="cardInside">
+            <div class="diya5 movingDiya"></div>
+            <div class="diya6 movingDiya"></div>
+            <div class="diya7 movingDiya"></div>
+            <div class="diya8 movingDiya"></div>
+            <div class="lights"><h3>Festival of Lights</h3></div>
+        </div> 
+    </div>
+    <script>
+        gsap.from('.diya1', 1.2, {opacity: 0, y: -150, delay: 0.4})
+        gsap.from('.diya2', 1.2, {opacity: 0, y: -150, delay: 0.7})
+        gsap.from('.diya3', 1.2, {opacity: 0, y: 350, delay: 0.9})
+        gsap.from('.diya4', 1.2, {opacity: 0, y: 200, delay: 1.2})
+
+        gsap.to('.movingDiya', {
+        duration: 2,
+        keyframes: [
+            { left: '0%', ease: 'power1.inOut' },
+            { left: '3.5%', ease: 'power1.inOut' },
+            { left: '0%', ease: 'power1.inOut' }
+        ],
+        repeat: -1,
+    });
+    </script>
+</body>
+</html>
